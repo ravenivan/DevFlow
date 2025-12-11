@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import { Inter, Space_Grotesk } from 'next/font/google';
@@ -13,17 +12,7 @@ const inter = Inter({
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-space-grotesk',
-});
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  variable: '--font-spaceGrotesk',
 });
 
 export const metadata: Metadata = {
@@ -45,6 +34,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
         <ClerkProvider
           appearance={{
+            cssLayerName: 'clerk',
             elements: {
               formButtonPrimary: 'primary-gradient',
               footerActionLink: 'primary-text-gradient hover:text-primary-500',

@@ -1,3 +1,4 @@
+@layer theme, base, clerk, components, utilities;
 @import "tailwindcss";
 @plugin '@tailwindcss/typography';
 
@@ -23,8 +24,8 @@
   --color-accent-blue: #1DA1F2;
   
   /* Font Families */
-  --font-family-inter: var(--font-inter);
-  --font-family-space-grotesk: var(--font-spaceGrotesk);
+  --font-inter: var(--font-inter);
+  --font-spaceGrotesk: var(--font-spaceGrotesk);
   
   /* Box Shadows */
   --shadow-light-100: 0px 12px 20px 0px rgba(184, 184, 184, 0.03), 0px 6px 12px 0px rgba(184, 184, 184, 0.03);
