@@ -22,7 +22,7 @@ import { useTheme } from '@/context/ThemeProvider';
 import { Badge } from '../ui/badge';
 import Image from 'next/image';
 
-const type:any = 'create'
+const type: any = 'create';
 
 const Question = () => {
   const { mode } = useTheme();
@@ -41,17 +41,15 @@ const Question = () => {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof QuestionsSchema>) {
-    setIsSubmitting(true)
-    
+    setIsSubmitting(true);
+
     try {
       // make an async call to your API -> create a question
       // contain all form data
-
       // navigate to home page
     } catch (error) {
-
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
   }
 
@@ -84,7 +82,7 @@ const Question = () => {
   const handleTagRemove = (tag: string, field: any) => {
     const newTags = field.value.filter((t: string) => t !== tag);
     form.setValue('tags', newTags);
-  }
+  };
 
   return (
     <Form {...form}>
@@ -122,6 +120,13 @@ const Question = () => {
               <FormControl className="mt-3.5">
                 <Editor
                   apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
+                  onInit={(evt, editor) => {
+                    // @ts-ignore
+                    editorRef.current = editor;
+                  }}
+                  onBlur={field.onBlur}
+                  onEditorChange={(content) => field.onChange(content)}
+                  initialValue=""
                   key={mode}
                   init={{
                     height: 350,
@@ -180,7 +185,9 @@ const Question = () => {
                   {field.value.length > 0 && (
                     <div className="flex-start mt-2.5 gap-2.5">
                       {field.value.map((tag: any) => (
-                        <Badge key={tag} className='subtle-medium background-light-800_dark-300 text-light-400_light-500 flex items-center justify-center gap-2 rounded-md border-none px-4 py-2 capitalize'
+                        <Badge
+                          key={tag}
+                          className="subtle-medium background-light-800_dark-300 text-light-400_light-500 flex items-center justify-center gap-2 rounded-md border-none px-4 py-2 capitalize"
                           onClick={() => handleTagRemove(tag, field)}
                         >
                           {tag}
@@ -205,16 +212,15 @@ const Question = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className='primary-gradient w-fit text-light-900!' disabled={isSubmitting}>
+        <Button
+          type="submit"
+          className="primary-gradient text-light-900! w-fit"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? (
-            <>
-              {type === 'edit' ? 'Editing...' : 'Posting...'}
-            </>
+            <>{type === 'edit' ? 'Editing...' : 'Posting...'}</>
           ) : (
-            <>
-              {type === 'edit' ? 'Edit Question' : 'Ask a Question'}
-            </>
-      
+            <>{type === 'edit' ? 'Edit Question' : 'Ask a Question'}</>
           )}
         </Button>
       </form>
