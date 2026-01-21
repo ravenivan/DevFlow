@@ -42,6 +42,8 @@ const Question = () => {
     console.log(values);
   }
 
+  console.log(mode)
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="flex w-full flex-col gap-10">
@@ -78,6 +80,7 @@ const Question = () => {
               <FormControl className="mt-3.5">
                 <Editor
                   apiKey={process.env.NEXT_PUBLIC_TINY_EDITOR_API_KEY}
+                  key={mode}
                   init={{
                     height: 350,
                     plugins: [
