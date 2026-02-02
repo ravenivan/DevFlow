@@ -21,6 +21,7 @@ import { QuestionsSchema } from '@/lib/validations';
 import { useTheme } from '@/context/ThemeProvider';
 import { Badge } from '../ui/badge';
 import Image from 'next/image';
+import { createQuestion } from '@/lib/actions/question.action';
 
 const type: any = 'create';
 
@@ -40,13 +41,15 @@ const Question = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof QuestionsSchema>) {
+  async function onSubmit(values: z.infer<typeof QuestionsSchema>) {
     setIsSubmitting(true);
 
     try {
       // make an async call to your API -> create a question
       // contain all form data
       // navigate to home page
+
+      await createQuestion({});
     } catch (error) {
     } finally {
       setIsSubmitting(false);
