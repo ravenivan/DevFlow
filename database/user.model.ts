@@ -20,7 +20,6 @@ const UserSchema = new Schema({
   name: { type: String, required: true },
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
-  // Optional because Clerk/social auth users may not have passwords
   password: { type: String },
   bio: { type: String },
   picture: { type: String, required: true },
