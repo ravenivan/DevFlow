@@ -5,7 +5,7 @@ let isConnected: boolean = false;
 export const connectToDatabase = async () => {
   mongoose.set('strictQuery', true);
 
-  if (!process.env.MONGODB_URL) return console.log('MISSING MOGODB_URL')
+  if (!process.env.MONGODB_URI) return console.log('MISSING MONGODB_URI')
 
   if (isConnected) {
     console.log('MongoDB is already connected');
@@ -13,7 +13,7 @@ export const connectToDatabase = async () => {
   }
 
   try {
-    await mongoose.connect(process.env.MONGODB_URL, {
+    await mongoose.connect(process.env.MONGODB_URI, {
       dbName: 'devflow',
     })
 
